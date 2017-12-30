@@ -44,13 +44,23 @@ data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r")
 data_dict.pop("TOTAL", 0)
 
 
+max_exercised = max([v["exercised_stock_options"] for v in data_dict.values() if v["exercised_stock_options"] != "NaN"])
+min_exercised = min([v["exercised_stock_options"] for v in data_dict.values() if v["exercised_stock_options"] != "NaN"])
+
+max_salary = max([v["salary"] for v in data_dict.values() if v["salary"] != "NaN"])
+min_salary = min([v["salary"] for v in data_dict.values() if v["salary"] != "NaN"])
+
+
 # max and min value taken by exercised_stock_options
-print "Max (exercised_stock_options) " , max([v["exercised_stock_options"] for v in data_dict.values() if v["exercised_stock_options"] != "NaN"])
-print "Min (exercised_stock_options) " , min([v["exercised_stock_options"] for v in data_dict.values() if v["exercised_stock_options"] != "NaN"])
+print "Max (exercised_stock_options) " , max_exercised
+print "Min (exercised_stock_options) " , min_exercised
 
 #max and min value for salary
-print "Max (salary) " , max([v["salary"] for v in data_dict.values() if v["salary"] != "NaN"])
-print "Min (salary) " , min([v["salary"] for v in data_dict.values() if v["salary"] != "NaN"])
+print "Max (salary) " , max_salary
+print "Min (salary) " , min_salary
+
+
+
 
 
 ### the input features we want to use 
@@ -59,9 +69,19 @@ feature_1 = "salary"
 feature_2 = "exercised_stock_options"
 feature_3 = "total_payments"
 poi  = "poi"
+
+# features_list = [poi, feature_1, feature_2, feature_3]
 features_list = [poi, feature_1, feature_2, feature_3]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
+
+
+
+
+
+
+
+
 
 
 ### in the "clustering with 3 features" part of the mini-project,
@@ -72,6 +92,8 @@ poi, finance_features = targetFeatureSplit( data )
 for f1, f2, _ in finance_features:
     plt.scatter( f1, f2 )
 plt.show()
+
+
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
@@ -87,6 +109,6 @@ pred = kmeans.predict(finance_features)
 ### so that the figure gets saved to a different file
 try:
     # Draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
-    Draw(pred, finance_features, poi, mark_poi=False, name="clusters2.pdf", f1_name=feature_1, f2_name=feature_2)
+    Draw(pred, finance_features, poi, mark_poi=False, name="clusters3.pdf", f1_name=feature_1, f2_name=feature_2)
 except NameError:
     print "no predictions object named pred found, no clusters to plot"
