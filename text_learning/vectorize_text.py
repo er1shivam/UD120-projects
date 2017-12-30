@@ -41,8 +41,8 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
     for path in from_person:
         ### only look at first 200 emails when developing
         ### once everything is working, remove this line to run over full dataset
-        temp_counter += 1
-        if temp_counter < 200:
+        # temp_counter += 1
+        # if temp_counter < 200:
             path = os.path.join('..', path[:-1])
             print path
             email = open(path, "r")
@@ -77,5 +77,12 @@ pickle.dump( from_data, open("your_email_authors.pkl", "w") )
 
 
 ### in Part 4, do TfIdf vectorization here
+from sklearn.feature_extraction.text import TfidfVectorizer
+tfidf=TfidfVectorizer(stop_words='english',lowercase=True)
+tfidf.fit_transform(word_data)
+vocab_list = tfidf.get_feature_names()
+print len(vocab_list)
+
+print vocab_list[34596]
 
 
