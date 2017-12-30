@@ -71,25 +71,27 @@ feature_3 = "total_payments"
 poi  = "poi"
 
 # features_list = [poi, feature_1, feature_2, feature_3]
-features_list = [poi, feature_1, feature_2, feature_3]
+features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
 
+# feature scaling
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+new_features = scaler.fit_transform(finance_features)
 
+given_points = numpy.array([[200000,1000000]])
+scaled_given_points = scaler.transform(given_points)
 
-
-
-
-
-
+print scaled_given_points
 
 
 ### in the "clustering with 3 features" part of the mini-project,
 ### you'll want to change this line to 
 ### for f1, f2, _ in finance_features:
 ### (as it's currently written, the line below assumes 2 features)
-# for f1, f2 in finance_features:
-for f1, f2, _ in finance_features:
+for f1, f2 in finance_features:
+# for f1, f2, _ in finance_features:
     plt.scatter( f1, f2 )
 plt.show()
 
