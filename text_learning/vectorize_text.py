@@ -48,17 +48,23 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             email = open(path, "r")
 
             ### use parseOutText to extract the text from the opened email
-
+            parsed = parseOutText(email)
+            parsed = parsed.split()
             ### use str.replace() to remove any instances of the words
-            ### ["sara", "shackleton", "chris", "germani"]
-
+            replace = ["sara", "shackleton", "chris", "germani"]
+            parsed = [word for word in parsed if word not in replace]
+            parsed = " ".join(parsed)
             ### append the text to word_data
-
+            word_data.append(parsed)
             ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
-
+            if from_person == "sara":
+                from_data.append(0)
+            else:
+                from_data.append(1)
 
             email.close()
 
+print word_data[152]
 print "emails processed"
 from_sara.close()
 from_chris.close()
