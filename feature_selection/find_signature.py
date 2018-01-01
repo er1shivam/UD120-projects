@@ -58,6 +58,7 @@ feat_imp = clf.feature_importances_
 importances = [i for i in feat_imp if i>=0.2]
 imp = [i for i in feat_imp]
 print importances
-print imp.index(importances[0])
-# for feat in feat_imp:
-#     print feat_imp
+print imp.index(importances[0])    #33614    #21323
+
+print "word causing problem in find_signature " , vectorizer.get_feature_names()[imp.index(importances[0])]
+
