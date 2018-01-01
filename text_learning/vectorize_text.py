@@ -51,7 +51,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             parsed = parseOutText(email)
             
             ### use str.replace() to remove any instances of the words
-            replace = ["sara", "shackleton", "chris", "germani"]
+            replace = ["sara", "cgermannsf" , "sshacklensf" , "shackleton", "chris", "germani"]
             for w in replace:
                 parsed = parsed.replace(w,"")
             ### append the text to word_data
@@ -84,5 +84,4 @@ vocab_list = tfidf.get_feature_names()
 print len(vocab_list)
 
 print vocab_list[34597]
-
 
