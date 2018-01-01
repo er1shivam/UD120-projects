@@ -54,4 +54,10 @@ print "Accuracy Score ", accuracy_score(labels_test, pred)
 print "Score ", clf.score(features_test,labels_test)
 
 
-
+feat_imp = clf.feature_importances_
+importances = [i for i in feat_imp if i>=0.2]
+imp = [i for i in feat_imp]
+print importances
+print imp.index(importances[0])
+# for feat in feat_imp:
+#     print feat_imp
