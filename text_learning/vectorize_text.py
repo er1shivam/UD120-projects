@@ -34,7 +34,7 @@ word_data = []
 ### can take a long time
 ### temp_counter helps you only look at the first 200 emails in the list so you
 ### can iterate your modifications quicker
-temp_counter = 0
+# temp_counter = 0
 
 
 for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
@@ -49,18 +49,18 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
 
             ### use parseOutText to extract the text from the opened email
             parsed = parseOutText(email)
-            parsed = parsed.split()
+            
             ### use str.replace() to remove any instances of the words
             replace = ["sara", "shackleton", "chris", "germani"]
-            parsed = [word for word in parsed if word not in replace]
-            parsed = " ".join(parsed)
+            for w in replace:
+                parsed = parsed.replace(w,"")
             ### append the text to word_data
             word_data.append(parsed)
             ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
             if from_person == "sara":
-                from_data.append(0)
+                from_data.append("0")
             else:
-                from_data.append(1)
+                from_data.append("1")
 
             email.close()
 
@@ -83,6 +83,6 @@ tfidf.fit_transform(word_data)
 vocab_list = tfidf.get_feature_names()
 print len(vocab_list)
 
-print vocab_list[34596]
+print vocab_list[34597]
 
 
