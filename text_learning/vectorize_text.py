@@ -57,9 +57,9 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             ### append the text to word_data
             word_data.append(parsed)
             ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
-            if from_person == "sara":
+            if name == "sara":
                 from_data.append("0")
-            else:
+            elif name == "chris":
                 from_data.append("1")
 
             email.close()
